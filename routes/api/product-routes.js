@@ -9,8 +9,14 @@ router.get('/', (req, res) => {
   // be sure to include its associated Category and Tag data
   Product.findAll({
     include: [
-      {model: Category},
-      {model: Tag},
+      {
+        model: Category,
+        attributes: ['id', 'category_name']
+      },
+      {
+        model: Tag,
+        attributes: ['id', 'tag_name'],
+      }
     ]
   })
     .then(products => res.json(products))
